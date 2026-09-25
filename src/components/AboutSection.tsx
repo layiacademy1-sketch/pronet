@@ -1,16 +1,14 @@
 import React from 'react';
 import {
   ShieldCheck,
-  Award,
   Users,
-  CheckCircle,
-  TrendingUp,
   Leaf,
   Clock,
   Sparkles,
   ArrowRight,
+  CheckCircle,
 } from 'lucide-react';
-import { KEY_STATS, COMPANY_INFO, CLIENT_PARTNERS } from '../data/cleaningData';
+import { KEY_STATS } from '../data/cleaningData';
 
 interface AboutSectionProps {
   onOpenQuoteModal: () => void;
@@ -25,68 +23,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenQuoteModal }) 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Visual presentation with Partenaires & Références Carousel */}
-          <div className="lg:col-span-6 relative">
-            {/* Partenaires & Références Card with continuous leftward carousel */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-slate-50/90 border border-slate-200/80 shadow-xl relative overflow-hidden">
-              <div className="flex items-center justify-between mb-4 px-1">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-sky-600" />
-                  <span className="text-sm font-black uppercase tracking-wider text-slate-800">
-                    Partenaires & Références
-                  </span>
-                </div>
-                <span className="text-xs font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-100">
-                  Ils nous font confiance
-                </span>
-              </div>
-
-              <p className="text-xs text-slate-500 mb-4 px-1">
-                Entreprises tertiaires, syndics et gestionnaires immobiliers qui délèguent la propreté de leurs sites à nos équipes :
-              </p>
-
-              {/* Slow leftward carousel of partner logos */}
-              <div className="relative w-full overflow-hidden mask-fade py-2">
-                <div className="animate-marquee flex items-center">
-                  {[...CLIENT_PARTNERS, ...CLIENT_PARTNERS].map((partner, idx) => (
-                    <div
-                      key={`about-partner-${partner.id}-${idx}`}
-                      className="mx-2 shrink-0 flex items-center justify-center h-14 w-32 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-xs hover:border-sky-300 hover:shadow-md transition-all group"
-                      title={partner.name}
-                    >
-                      {partner.logoUrl ? (
-                        <img
-                          src={partner.logoUrl}
-                          alt={partner.name}
-                          className="max-h-9 max-w-full object-contain filter group-hover:scale-105 transition-transform"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <span className="text-[11px] font-bold text-slate-700 truncate">
-                          {partner.name}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Value proposition badges inside the card */}
-              <div className="mt-5 pt-4 border-t border-slate-200/80 grid grid-cols-2 gap-3 text-center">
-                <div className="p-2.5 rounded-xl bg-white border border-slate-100 shadow-2xs">
-                  <div className="text-base font-black text-sky-600">100%</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Contrats renouvelés</div>
-                </div>
-                <div className="p-2.5 rounded-xl bg-white border border-slate-100 shadow-2xs">
-                  <div className="text-base font-black text-emerald-600">&lt; 24h</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Délai d'intervention</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Text presentation */}
-          <div className="lg:col-span-6 space-y-6">
+          {/* Left Column: Text presentation & story */}
+          <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-sky-600" />
               <span>Qui sommes-nous</span>
@@ -96,19 +34,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenQuoteModal }) 
               Des experts du nettoyage à votre service
             </h2>
 
-            <p className="text-base text-slate-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
               Fondée sur des valeurs d'exigence, de rigueur et de discrétion,{' '}
-              <strong className="text-slate-900">Société PRONET</strong> s’est imposée comme
+              <strong className="text-slate-900 font-bold">Société PRONET</strong> s’est imposée comme
               le partenaire privilégié des directeurs d'immeubles, gestionnaires de sites
-              industriels, syndics de copropriété et chefs d'entreprises en Île-de-France.
+              tertiaires, syndics de copropriété et chefs d'entreprises en Île-de-France.
             </p>
 
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Nos agents font l'objet d'un recrutement rigoureux (contrôle des références, casier
               judiciaire vierge, formations continues CQP) et sont équipés de machines
               professionnelles de pointe (autolaveuses Kärcher / Nilfisk, injection-extraction,
-              osmose inverse pour vitrerie). Nous intervenons en horaires sur-mesure pour respecter
-              le confort de vos occupants.
+              osmose inverse pour vitrerie). Nous adaptons nos horaires d'intervention pour respecter
+              le confort et la sérénité de vos occupants.
             </p>
 
             {/* Checklist pillars */}
@@ -139,19 +77,82 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenQuoteModal }) 
               </div>
             </div>
 
-            <div className="pt-4 flex items-center gap-4">
+            <div className="pt-4 flex flex-wrap items-center gap-4">
               <button
                 onClick={onOpenQuoteModal}
-                className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer hover:shadow-lg hover:-translate-y-0.5"
               >
                 <span>Programmer un audit de vos locaux</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
+
+          {/* Right Column: 4 Engagements Fondamentaux Cards */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-sky-300 hover:shadow-md transition-all">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center shrink-0">
+                  <Clock className="w-5 h-5 text-sky-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Réactivité &amp; Urgences</h3>
+                  <span className="text-xs font-semibold text-sky-600">Intervention sous 24h</span>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Une astreinte et des équipes mobiles prêtes à intervenir rapidement en cas d'imprévu ou de sinistre.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-sky-300 hover:shadow-md transition-all">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5 text-emerald-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Traçabilité &amp; Contrôle</h3>
+                  <span className="text-xs font-semibold text-emerald-600">Cahier de liaison digital</span>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Suivi transparent des passages, rapports réguliers et fiches de contrôle transmises après chaque intervention.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-sky-300 hover:shadow-md transition-all">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                  <Users className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Personnel Qualifié en CDI</h3>
+                  <span className="text-xs font-semibold text-blue-600">Stabilité &amp; Discrétion</span>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Des agents attitrés et fidélisés pour garantir une parfaite connaissance de vos locaux et de vos habitudes.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-xs hover:border-sky-300 hover:shadow-md transition-all">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center shrink-0">
+                  <Leaf className="w-5 h-5 text-teal-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Santé &amp; Éco-responsabilité</h3>
+                  <span className="text-xs font-semibold text-teal-600">100% Produits Écolabel</span>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Des formulations saines sans perturbateurs endocriniens pour préserver la qualité de l’air et vos collaborateurs.
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Dynamic Key Stats Cards Grid (Requested: easily editable from cleaningData.ts) */}
+        {/* Dynamic Key Stats Cards Grid (easily editable from cleaningData.ts) */}
         <div className="mt-16 sm:mt-20 pt-12 border-t border-slate-100">
           <div className="text-center mb-8">
             <h3 className="text-xs uppercase tracking-widest font-black text-slate-400">

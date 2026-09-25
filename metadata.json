@@ -1,0 +1,6 @@
+{
+  "name": "Valoris Pro Nettoyage - Nettoyage Industriel & Professionnel",
+  "description": "Site officiel de la Société PRONET Propreté & Multi-Services, experte en nettoyage industriel, tertiaire, copropriétés et fin de chantier en Île-de-France. Devis gratuit au 06 31 91 46 71.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

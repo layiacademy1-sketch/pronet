@@ -34,7 +34,7 @@ export const PartnersSection: React.FC = () => {
               className="mx-3 sm:mx-4 shrink-0"
             >
               <div
-                className={`flex items-center justify-center h-24 sm:h-28 w-44 sm:w-56 px-5 py-3 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-sky-400 hover:-translate-y-0.5 transition-all duration-300 group cursor-default ${
+                className={`flex items-center justify-center h-28 sm:h-32 w-52 sm:w-64 px-4 py-3 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-sky-400 hover:-translate-y-0.5 transition-all duration-300 group cursor-default overflow-hidden ${
                   partner.darkBg ? 'bg-slate-950 border-slate-800' : 'bg-white'
                 }`}
               >
@@ -42,7 +42,11 @@ export const PartnersSection: React.FC = () => {
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="max-h-16 sm:max-h-18 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = `/assets/partners/carousel-${partner.id}.jpeg`;
+                    }}
+                    className="max-h-20 sm:max-h-24 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300 rounded-lg"
                     loading="lazy"
                   />
                 ) : (

@@ -1,14 +1,10 @@
 import React from 'react';
 import {
-  Sparkles,
   Phone,
   Mail,
   MapPin,
   Clock,
-  ShieldCheck,
-  Award,
   ArrowRight,
-  ExternalLink,
 } from 'lucide-react';
 import { COMPANY_INFO, SERVICES_LIST } from '../data/cleaningData';
 import { PronetLogo } from './PronetLogo';
@@ -37,60 +33,35 @@ export const Footer: React.FC<FooterProps> = ({
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
-          {/* Col 1: Brand & Presentation (5 cols) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80 items-start">
+          {/* Col 1: Brand Logo, Presentation Text & Agent Photo in Fade */}
           <div className="lg:col-span-4 space-y-4">
-            <PronetLogo variant="dark" size="md" />
+            <PronetLogo variant="dark" size="lg" />
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               {COMPANY_INFO.shortBio}
             </p>
 
-            <div className="pt-2 space-y-1 text-xs text-slate-400">
-              <p>
-                <strong className="text-slate-300">RCS :</strong> {COMPANY_INFO.rcs}
-              </p>
-              <p>
-                <strong className="text-slate-300">SIRET :</strong> {COMPANY_INFO.siret}
-              </p>
-              <p>
-                <strong className="text-slate-300">Assurance :</strong> {COMPANY_INFO.assurance}
-              </p>
-            </div>
-
-            {/* Social Links (Professional LinkedIn, Facebook Pro, Google Business) */}
-            <div className="pt-2">
-              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-                Réseaux & Plateformes pro
-              </p>
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-900 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
-                  aria-label="LinkedIn PRONET"
-                >
-                  in
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-900 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
-                  aria-label="Facebook Professionnel"
-                >
-                  f
-                </a>
-                <a
-                  href="https://maps.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-900 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
-                  aria-label="Fiche Google My Business"
-                >
-                  G
-                </a>
+            {/* Photo in fade with head clearly visible */}
+            <div className="relative pt-2">
+              <div className="relative w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border border-slate-800/80 bg-slate-900/60 group">
+                <img
+                  src="/assets/agent-pronet.jpg"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://image.noelshack.com/fichiers/2026/39/5/1790300427-lllll.jpg';
+                  }}
+                  alt="Agent professionnel PRONET"
+                  className="w-full h-56 sm:h-64 object-cover object-top filter brightness-[0.98] contrast-[1.05] transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    maskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 55%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                  }}
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
               </div>
             </div>
           </div>

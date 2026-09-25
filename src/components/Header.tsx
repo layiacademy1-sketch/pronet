@@ -155,14 +155,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal, onSelectServic
               </button>
             </div>
 
-            {/* Right Action / Contact */}
-            <div className="flex-1 flex items-center justify-end gap-5">
+            {/* Right Action / Contact & Direct Call */}
+            <div className="flex-1 flex items-center justify-end gap-3 xl:gap-4">
               <button
                 onClick={() => scrollToSection('contact')}
                 className="text-sm font-semibold text-slate-700 hover:text-sky-600 transition-colors cursor-pointer"
               >
                 Contact
               </button>
+              <a
+                href={`tel:${COMPANY_INFO.phoneRaw}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-950 text-xs font-black transition-all cursor-pointer"
+                title="Appel direct sans formulaire : 06 31 91 46 71"
+              >
+                <Phone className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                <span>{COMPANY_INFO.phone}</span>
+              </a>
             </div>
           </div>
 
@@ -275,10 +283,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal, onSelectServic
             <div className="pt-3 border-t border-slate-100 space-y-2">
               <a
                 href={`tel:${COMPANY_INFO.phoneRaw}`}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-900 rounded-xl font-bold text-sm"
+                className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-50 border border-emerald-200 text-emerald-950 rounded-xl font-bold text-sm"
               >
-                <Phone className="w-4 h-4 text-sky-600" />
-                <span>Appeler : {COMPANY_INFO.phone}</span>
+                <Phone className="w-4 h-4 text-emerald-600 animate-pulse" />
+                <span>Appel direct sans formulaire : {COMPANY_INFO.phone}</span>
               </a>
 
               <button

@@ -19,29 +19,21 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal, onExploreServices }) => {
   return (
-    <section id="accueil" className="relative overflow-hidden bg-slate-900 text-white pt-10 pb-20 lg:pt-16 lg:pb-28">
-      {/* Background video & overlays of professional office cleaning */}
+    <section id="accueil" className="relative overflow-hidden bg-slate-950 text-white pt-10 pb-20 lg:pt-16 lg:pb-28">
+      {/* Background image in place of video - clearly visible and vibrant */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/assets/office-cleaning-poster.jpg"
-          className="w-full h-full object-cover object-center filter brightness-[0.55] contrast-[1.10] scale-105"
-        >
-          <source src="/assets/office-cleaning.mp4" type="video/mp4" />
-          {/* Fallback image if video cannot play */}
-          <img
-            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=85"
-            alt="Agents professionnels de propreté et nettoyage multi-services PRONET"
-            className="w-full h-full object-cover object-center filter brightness-[0.4] contrast-[1.08]"
-          />
-        </video>
-        {/* Cinematic gradient overlays for high legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-slate-900/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(2,132,199,0.25),transparent_60%)]" />
+        <img
+          src="/assets/agent-pronet.jpg"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src =
+              'https://image.noelshack.com/fichiers/2026/39/5/1790300427-lllll.jpg';
+          }}
+          alt="Agent professionnel PRONET propreté et nettoyage"
+          className="w-full h-full object-cover object-top md:object-[right_top] filter brightness-[0.98] contrast-[1.05] scale-100"
+        />
+        {/* Gradient overlay: Dark on the left for maximum text readability, clear on the right so the agent stands out */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-slate-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,19 +88,27 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal, onExploreServices 
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
               <button
                 onClick={onOpenQuoteModal}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 text-base font-bold text-white bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 rounded-xl shadow-xl shadow-sky-600/30 hover:shadow-sky-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 text-base font-bold text-white bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 rounded-xl shadow-xl shadow-sky-600/30 hover:shadow-sky-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer group"
               >
                 <Calendar className="w-5 h-5 text-sky-200" />
                 <span>Prendre rendez-vous</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
 
+              <a
+                href={`tel:${COMPANY_INFO.phoneRaw}`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-xl shadow-emerald-600/30 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+              >
+                <PhoneCall className="w-5 h-5 text-emerald-100 animate-pulse" />
+                <span>Appel direct : {COMPANY_INFO.phone}</span>
+              </a>
+
               <button
                 onClick={onExploreServices}
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-slate-200 hover:text-white bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-xl border border-white/15 transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-4 text-sm font-semibold text-slate-200 hover:text-white bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-xl border border-white/15 transition-all cursor-pointer"
               >
                 <span>Découvrir nos services</span>
               </button>
@@ -170,13 +170,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal, onExploreServices 
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
-                  <PhoneCall className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <a
+                  href={`tel:${COMPANY_INFO.phoneRaw}`}
+                  className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/30 transition-colors group cursor-pointer"
+                >
+                  <PhoneCall className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 animate-pulse" />
                   <div>
-                    <strong className="block text-white font-semibold">Ligne directe entreprise</strong>
-                    <span className="text-slate-300 text-xs">Astreinte opérationnelle joignable 24h/24</span>
+                    <strong className="block text-white font-semibold">Ligne directe sans formulaire</strong>
+                    <span className="text-emerald-300 text-xs font-bold">{COMPANY_INFO.phone} (Appel direct 7j/7)</span>
                   </div>
-                </div>
+                </a>
               </div>
 
               <button

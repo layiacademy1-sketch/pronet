@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { X, Sparkles, Send, CheckCircle, AlertCircle, Phone } from 'lucide-react';
 import { SERVICES_LIST, COMPANY_INFO } from '../data/cleaningData';
 import { QuoteFormData } from '../types';
+import {
+  buildQuoteWhatsAppUrl,
+  openWhatsApp,
+  DIRECT_PHONE,
+  DIRECT_PHONE_RAW,
+} from '../utils/whatsapp';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -33,6 +39,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
+  const [submittedWhatsAppUrl, setSubmittedWhatsAppUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (preselectedServiceId) {
@@ -77,15 +84,24 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     if (!validate()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      const ref = `DEV-2026-${Math.floor(10000 + Math.random() * 90000)}`;
-      setSubmittedRef(ref);
-    }, 600);
+    const ref = `RDV-2026-${Math.floor(10000 + Math.random() * 90000)}`;
+    const waUrl = buildQuoteWhatsAppUrl({
+      ...formData,
+      reference: ref,
+      type: 'rendez-vous',
+    });
+
+    setSubmittedRef(ref);
+    setSubmittedWhatsAppUrl(waUrl);
+
+    // Send everything to WhatsApp directly
+    openWhatsApp(waUrl);
+    setIsSubmitting(false);
   };
 
   const handleClose = () => {
     setSubmittedRef(null);
+    setSubmittedWhatsAppUrl(null);
     onClose();
   };
 
@@ -98,12 +114,12 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white sticky top-0 z-10">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
               <h3 className="text-base font-black text-slate-900">Prendre rendez-vous & Devis express</h3>
-              <p className="text-[11px] text-slate-500">Chiffrage gratuit et prise de rendez-vous sous 24 heures ouvrées</p>
+              <p className="text-[11px] text-slate-500">Transmission directe sur WhatsApp ({DIRECT_PHONE})</p>
             </div>
           </div>
 
@@ -119,20 +135,40 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
         {/* Body */}
         <div className="p-6 overflow-y-auto">
           {submittedRef ? (
-            <div className="py-8 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
-                <CheckCircle className="w-8 h-8" />
+            <div className="py-6 text-center space-y-4">
+              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
+                <CheckCircle className="w-9 h-9" />
               </div>
-              <h4 className="text-2xl font-black text-slate-900">Votre demande de rendez-vous est enregistrée !</h4>
-              <p className="text-sm text-slate-600 max-w-md mx-auto">
-                Votre dossier a été enregistré sous la référence{' '}
-                <span className="font-mono font-bold text-sky-600">{submittedRef}</span>. Un
-                conseiller PRONET vous recontactera sous 24h ouvrées pour confirmer votre rendez-vous et vos besoins.
+              <h4 className="text-2xl font-black text-slate-900">Demande envoyée sur WhatsApp !</h4>
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                Toutes vos informations (dossier référence{' '}
+                <span className="font-mono font-bold text-emerald-600">{submittedRef}</span>) sont
+                transmises à notre conseiller sur WhatsApp au{' '}
+                <strong className="text-slate-900">{DIRECT_PHONE}</strong>.
               </p>
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                {submittedWhatsAppUrl && (
+                  <a
+                    href={submittedWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-6 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer transition-all"
+                  >
+                    <span>Ouvrir la conversation WhatsApp</span>
+                  </a>
+                )}
+                <a
+                  href={`tel:${DIRECT_PHONE_RAW}`}
+                  className="w-full sm:w-auto px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-emerald-400" />
+                  <span>Appeler le {DIRECT_PHONE}</span>
+                </a>
+              </div>
               <div className="pt-4">
                 <button
                   onClick={handleClose}
-                  className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors"
+                  className="px-6 py-2.5 bg-slate-100 text-slate-700 rounded-xl text-xs font-bold hover:bg-slate-200 transition-colors"
                 >
                   Fermer cette fenêtre
                 </button>
@@ -140,6 +176,30 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
+              {/* Direct call banner without filling the form */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="font-bold text-emerald-950 block text-xs">
+                      Vous préférez appeler sans remplir le formulaire ?
+                    </span>
+                    <span className="text-emerald-800 text-[11px]">
+                      Ligne directe 7j/7 : intervention & chiffrage immédiat
+                    </span>
+                  </div>
+                </div>
+                <a
+                  href={`tel:${DIRECT_PHONE_RAW}`}
+                  className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition-colors whitespace-nowrap cursor-pointer"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>Appeler {DIRECT_PHONE}</span>
+                </a>
+              </div>
+
               {/* Anti-bot honeypot */}
               <input
                 type="text"
@@ -328,16 +388,16 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+                className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl font-bold text-xs sm:text-sm shadow-md shadow-emerald-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
               >
                 {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Calcul et envoi en cours...</span>
+                    <span>Transmission sur WhatsApp en cours...</span>
                   </>
                 ) : (
                   <>
-                    <span>Confirmer la demande de rendez-vous</span>
+                    <span>Envoyer la demande sur WhatsApp ({DIRECT_PHONE})</span>
                     <Send className="w-3.5 h-3.5" />
                   </>
                 )}

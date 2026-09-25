@@ -15,6 +15,12 @@ import {
 } from 'lucide-react';
 import { SERVICES_LIST, COMPANY_INFO } from '../data/cleaningData';
 import { QuoteFormData } from '../types';
+import {
+  buildQuoteWhatsAppUrl,
+  openWhatsApp,
+  DIRECT_PHONE,
+  DIRECT_PHONE_RAW,
+} from '../utils/whatsapp';
 
 interface QuoteSectionProps {
   preselectedServiceId?: string;
@@ -43,6 +49,7 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ preselectedServiceId
     reference: string;
     clientName: string;
     serviceName: string;
+    whatsappUrl?: string;
   } | null>(null);
 
   const validate = (): boolean => {
@@ -98,19 +105,23 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ preselectedServiceId
     }
 
     setIsSubmitting(true);
+    const generatedRef = `DEV-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
+    const selectedService = SERVICES_LIST.find((s) => s.id === formData.serviceId);
+    const waUrl = buildQuoteWhatsAppUrl({
+      ...formData,
+      reference: generatedRef,
+      type: 'devis',
+    });
 
-    // Simulated API call (prepared for webhook, Node/Express backend or email delivery)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      const generatedRef = `DEV-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-      const selectedService = SERVICES_LIST.find((s) => s.id === formData.serviceId);
+    setSubmittedData({
+      reference: generatedRef,
+      clientName: formData.fullName,
+      serviceName: selectedService ? selectedService.title : 'Nettoyage professionnel',
+      whatsappUrl: waUrl,
+    });
 
-      setSubmittedData({
-        reference: generatedRef,
-        clientName: formData.fullName,
-        serviceName: selectedService ? selectedService.title : 'Nettoyage professionnel',
-      });
-    }, 700);
+    openWhatsApp(waUrl);
+    setIsSubmitting(false);
   };
 
   const handleReset = () => {
@@ -204,20 +215,20 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ preselectedServiceId
                 </div>
               </div>
 
-              {/* Direct call box */}
-              <div className="mt-8 pt-6 border-t border-slate-800">
+              {/* Direct call box without form */}
+              <div className="mt-8 pt-6 border-t border-slate-800 space-y-2">
                 <p className="text-xs text-slate-400 uppercase font-semibold tracking-wider">
-                  Besoin d’un chiffrage urgent par téléphone ?
+                  Vous préférez appeler sans remplir le formulaire ?
                 </p>
                 <a
-                  href={`tel:${COMPANY_INFO.phoneRaw}`}
-                  className="mt-2 inline-flex items-center gap-2 text-lg font-black text-sky-400 hover:text-sky-300 transition-colors"
+                  href={`tel:${DIRECT_PHONE_RAW}`}
+                  className="mt-2 inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 rounded-xl text-base font-black text-emerald-300 transition-colors cursor-pointer"
                 >
-                  <Phone className="w-5 h-5 animate-pulse" />
-                  <span>{COMPANY_INFO.phone}</span>
+                  <Phone className="w-5 h-5 text-emerald-400 animate-pulse" />
+                  <span>{DIRECT_PHONE}</span>
                 </a>
-                <p className="text-[11px] text-slate-400 mt-1">
-                  Permanence du lundi au samedi de 6h à 21h
+                <p className="text-[11px] text-slate-400">
+                  Ligne directe 7j/7 • Chiffrage immédiat par téléphone
                 </p>
               </div>
             </div>
@@ -232,7 +243,7 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ preselectedServiceId
                   </div>
                   <div className="space-y-2">
                     <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-200">
-                      Demande enregistrée avec succès
+                      Demande transmise sur WhatsApp
                     </span>
                     <h3 className="text-2xl font-black text-slate-900">
                       Merci {submittedData.clientName} !
@@ -242,40 +253,51 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ preselectedServiceId
                       <span className="font-semibold text-slate-900">
                         {submittedData.serviceName}
                       </span>{' '}
-                      » a bien été transmise à notre service chiffrage.
+                      » a été préparée et transmise à notre conseiller sur WhatsApp ({DIRECT_PHONE}).
                     </p>
                   </div>
 
                   <div className="max-w-md mx-auto p-4 bg-slate-50 border border-slate-200 rounded-2xl text-left text-xs space-y-2 text-slate-700">
                     <div className="flex justify-between pb-1 border-b border-slate-200">
                       <span className="font-semibold">Référence dossier :</span>
-                      <span className="font-mono font-bold text-sky-700">
+                      <span className="font-mono font-bold text-emerald-700">
                         {submittedData.reference}
                       </span>
                     </div>
                     <div className="flex justify-between pb-1 border-b border-slate-200">
-                      <span className="font-semibold">Délai d’engagement :</span>
-                      <span className="text-emerald-700 font-bold">Réponse sous 24h</span>
+                      <span className="font-semibold">Destinataire WhatsApp :</span>
+                      <span className="text-emerald-700 font-bold">{DIRECT_PHONE}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-semibold">Chargé d'affaires :</span>
-                      <span>Direction commerciale PRONET</span>
+                      <span>Direction opérationnelle PRONET</span>
                     </div>
                   </div>
 
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    {submittedData.whatsappUrl && (
+                      <a
+                        href={submittedData.whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl text-sm font-bold shadow-md shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                      >
+                        <span>Ouvrir dans WhatsApp</span>
+                      </a>
+                    )}
+                    <a
+                      href={`tel:${DIRECT_PHONE_RAW}`}
+                      className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-bold hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <Phone className="w-4 h-4 text-emerald-400" />
+                      <span>Appeler le {DIRECT_PHONE}</span>
+                    </a>
                     <button
                       onClick={handleReset}
-                      className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-bold hover:bg-slate-800 transition-colors"
+                      className="px-6 py-2.5 bg-slate-100 text-slate-700 rounded-xl text-sm font-bold hover:bg-slate-200 transition-colors cursor-pointer"
                     >
-                      Nouvelle demande de devis
+                      Nouveau calcul
                     </button>
-                    <a
-                      href={`tel:${COMPANY_INFO.phoneRaw}`}
-                      className="px-6 py-2.5 bg-sky-50 text-sky-700 border border-sky-200 rounded-xl text-sm font-bold hover:bg-sky-100 transition-colors"
-                    >
-                      Appeler nos équipes directement
-                    </a>
                   </div>
                 </div>
               ) : (
@@ -525,16 +547,16 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({ preselectedServiceId
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 px-6 bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-500 hover:to-sky-600 text-white rounded-xl font-bold text-base shadow-lg shadow-sky-600/30 hover:shadow-xl hover:shadow-sky-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full py-4 px-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl font-bold text-base shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>Transmission de votre demande en cours...</span>
+                          <span>Transmission sur WhatsApp en cours...</span>
                         </>
                       ) : (
                         <>
-                          <span>Envoyer ma demande de devis</span>
+                          <span>Envoyer tout sur WhatsApp ({DIRECT_PHONE})</span>
                           <Send className="w-4 h-4" />
                         </>
                       )}

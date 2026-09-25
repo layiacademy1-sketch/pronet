@@ -42,6 +42,14 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({
               <ArrowRight className="w-4 h-4 text-sky-600" />
             </button>
 
+            <a
+              href={`tel:${COMPANY_INFO.phoneRaw}`}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base rounded-xl shadow-xl shadow-emerald-700/40 transition-all hover:scale-105 cursor-pointer"
+            >
+              <Phone className="w-4 h-4 text-emerald-100 animate-pulse" />
+              <span>Appel direct : {COMPANY_INFO.phone}</span>
+            </a>
+
             <button
               onClick={onScrollToContact}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-base rounded-xl backdrop-blur-md transition-all cursor-pointer"

@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import React from 'react';
 import { COMPANY_INFO } from '../data/cleaningData';
 
 export const WhatsAppButton: React.FC = () => {
-  const [showTooltip, setShowTooltip] = useState(true);
-
   // Preset message URL encoded in French
   const presetMessage = encodeURIComponent(
     'Bonjour PRONET, je souhaite obtenir des renseignements pour un devis de nettoyage professionnel.'
@@ -13,23 +10,6 @@ export const WhatsAppButton: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
-      {/* Speech bubble tooltip on first load */}
-      {showTooltip && (
-        <div className="mb-2 bg-white text-slate-800 p-3 rounded-2xl shadow-2xl border border-slate-200 text-xs max-w-[240px] animate-in slide-in-from-bottom-2 duration-300 relative group">
-          <button
-            onClick={() => setShowTooltip(false)}
-            className="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-slate-200 text-slate-600 hover:bg-slate-300 flex items-center justify-center text-[10px]"
-            aria-label="Fermer le message d'aide"
-          >
-            <X className="w-3 h-3" />
-          </button>
-          <p className="font-bold text-slate-900">Besoin d'un devis immédiat ?</p>
-          <p className="text-slate-600 text-[11px] mt-0.5">
-            Échangez directement avec un conseiller par WhatsApp 7j/7.
-          </p>
-        </div>
-      )}
-
       {/* Main floating button */}
       <a
         href={whatsappUrl}

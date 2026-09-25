@@ -186,10 +186,10 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
         <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 z-20">
           <a
             href={`tel:${COMPANY_INFO.phoneRaw}`}
-            className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-sky-600 transition-colors"
+            className="flex items-center gap-2 text-xs font-bold text-slate-800 hover:text-emerald-600 transition-colors"
           >
-            <Phone className="w-4 h-4 text-sky-600" />
-            <span>Des questions ? {COMPANY_INFO.phone}</span>
+            <Phone className="w-4 h-4 text-emerald-600 animate-pulse" />
+            <span>Appel direct sans formulaire : {COMPANY_INFO.phone}</span>
           </a>
 
           <div className="flex items-center gap-3 w-full sm:w-auto">

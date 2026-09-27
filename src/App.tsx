@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { QuoteSection } from './components/QuoteSection';
 import { AboutSection } from './components/AboutSection';
+import { InterventionsCarousel } from './components/InterventionsCarousel';
 import { ServicesSection } from './components/ServicesSection';
 import { WhyUsSection } from './components/WhyUsSection';
 import { ProcessSection } from './components/ProcessSection';
@@ -101,6 +102,9 @@ export default function App() {
 
         {/* 5. Section Présentation: "Des experts du nettoyage à votre service" with editable stats cards */}
         <AboutSection onOpenQuoteModal={() => handleOpenQuoteModal()} />
+
+        {/* Carrousel : Nos équipes et interventions en images au-dessus de Services */}
+        <InterventionsCarousel />
 
         {/* 6. Section Services with 8 comprehensive cards, photos, badges and detail views */}
         <ServicesSection

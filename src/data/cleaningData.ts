@@ -639,3 +639,158 @@ export const FAQS = [
     a: 'Nous intervenons sur l’ensemble de l’Île-de-France (Paris et tous les départements 77, 78, 91, 92, 93, 94, 95) ainsi que sur les métropoles nationales pour les contrats multisites industriels.',
   },
 ];
+
+export interface ProcessCarouselPhoto {
+  id: number;
+  url: string;
+  fallbackUrl: string;
+  title: string;
+}
+
+export const PROCESS_CAROUSEL_PHOTOS: ProcessCarouselPhoto[] = [
+  {
+    id: 1,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368746-whatsapp-image-2026-09-25-at-22-37-08.jpeg',
+    fallbackUrl: '/assets/interventions/photo-1.jpeg',
+    title: 'Intervention terrain PRONET #1',
+  },
+  {
+    id: 2,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368747-whatsapp-image-2026-09-25-at-22-37-08-1.jpeg',
+    fallbackUrl: '/assets/interventions/photo-2.jpeg',
+    title: 'Intervention terrain PRONET #2',
+  },
+  {
+    id: 3,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368746-whatsapp-image-2026-09-25-at-22-37-08-2.jpeg',
+    fallbackUrl: '/assets/interventions/photo-3.jpeg',
+    title: 'Intervention terrain PRONET #3',
+  },
+  {
+    id: 4,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368747-whatsapp-image-2026-09-25-at-22-37-08-3.jpeg',
+    fallbackUrl: '/assets/interventions/photo-4.jpeg',
+    title: 'Intervention terrain PRONET #4',
+  },
+  {
+    id: 5,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368746-whatsapp-image-2026-09-25-at-22-37-08-4.jpeg',
+    fallbackUrl: '/assets/interventions/photo-5.jpeg',
+    title: 'Intervention terrain PRONET #5',
+  },
+  {
+    id: 6,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368746-whatsapp-image-2026-09-25-at-22-37-08-5.jpeg',
+    fallbackUrl: '/assets/interventions/photo-6.jpeg',
+    title: 'Intervention terrain PRONET #6',
+  },
+  {
+    id: 7,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368747-whatsapp-image-2026-09-25-at-22-37-09.jpeg',
+    fallbackUrl: '/assets/interventions/photo-7.jpeg',
+    title: 'Intervention terrain PRONET #7',
+  },
+  {
+    id: 8,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368748-whatsapp-image-2026-09-25-at-22-37-09-1.jpeg',
+    fallbackUrl: '/assets/interventions/photo-8.jpeg',
+    title: 'Intervention terrain PRONET #8',
+  },
+  {
+    id: 9,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368748-whatsapp-image-2026-09-25-at-22-37-09-2.jpeg',
+    fallbackUrl: '/assets/interventions/photo-9.jpeg',
+    title: 'Intervention terrain PRONET #9',
+  },
+  {
+    id: 10,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368748-whatsapp-image-2026-09-25-at-22-37-09-3.jpeg',
+    fallbackUrl: '/assets/interventions/photo-10.jpeg',
+    title: 'Intervention terrain PRONET #10',
+  },
+  {
+    id: 11,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368748-whatsapp-image-2026-09-25-at-22-37-09-4.jpeg',
+    fallbackUrl: '/assets/interventions/photo-11.jpeg',
+    title: 'Intervention terrain PRONET #11',
+  },
+  {
+    id: 12,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368747-whatsapp-image-2026-09-25-at-22-37-09-5.jpeg',
+    fallbackUrl: '/assets/interventions/photo-12.jpeg',
+    title: 'Intervention terrain PRONET #12',
+  },
+  {
+    id: 13,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368749-whatsapp-image-2026-09-25-at-22-37-10.jpeg',
+    fallbackUrl: '/assets/interventions/photo-13.jpeg',
+    title: 'Intervention terrain PRONET #13',
+  },
+  {
+    id: 14,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368748-whatsapp-image-2026-09-25-at-22-37-10-1.jpeg',
+    fallbackUrl: '/assets/interventions/photo-14.jpeg',
+    title: 'Intervention terrain PRONET #14',
+  },
+  {
+    id: 15,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368749-whatsapp-image-2026-09-25-at-22-37-10-2.jpeg',
+    fallbackUrl: '/assets/interventions/photo-15.jpeg',
+    title: 'Intervention terrain PRONET #15',
+  },
+  {
+    id: 16,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368750-whatsapp-image-2026-09-25-at-22-37-10-3.jpeg',
+    fallbackUrl: '/assets/interventions/photo-16.jpeg',
+    title: 'Intervention terrain PRONET #16',
+  },
+  {
+    id: 17,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368749-whatsapp-image-2026-09-25-at-22-37-10-4.jpeg',
+    fallbackUrl: '/assets/interventions/photo-17.jpeg',
+    title: 'Intervention terrain PRONET #17',
+  },
+  {
+    id: 18,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368749-whatsapp-image-2026-09-25-at-22-37-10-5.jpeg',
+    fallbackUrl: '/assets/interventions/photo-18.jpeg',
+    title: 'Intervention terrain PRONET #18',
+  },
+  {
+    id: 19,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368750-whatsapp-image-2026-09-25-at-22-37-11.jpeg',
+    fallbackUrl: '/assets/interventions/photo-19.jpeg',
+    title: 'Intervention terrain PRONET #19',
+  },
+  {
+    id: 20,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368749-whatsapp-image-2026-09-25-at-22-37-11-1.jpeg',
+    fallbackUrl: '/assets/interventions/photo-20.jpeg',
+    title: 'Intervention terrain PRONET #20',
+  },
+  {
+    id: 21,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368749-whatsapp-image-2026-09-25-at-22-37-11-2.jpeg',
+    fallbackUrl: '/assets/interventions/photo-21.jpeg',
+    title: 'Intervention terrain PRONET #21',
+  },
+  {
+    id: 22,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368750-whatsapp-image-2026-09-25-at-22-37-11-3.jpeg',
+    fallbackUrl: '/assets/interventions/photo-22.jpeg',
+    title: 'Intervention terrain PRONET #22',
+  },
+  {
+    id: 23,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368748-whatsapp-image-2026-09-25-at-22-37-11-4.jpeg',
+    fallbackUrl: '/assets/interventions/photo-23.jpeg',
+    title: 'Intervention terrain PRONET #23',
+  },
+  {
+    id: 24,
+    url: 'https://image.noelshack.com/fichiers/2026/39/5/1790368750-whatsapp-image-2026-09-25-at-22-37-11-5.jpeg',
+    fallbackUrl: '/assets/interventions/photo-24.jpeg',
+    title: 'Intervention terrain PRONET #24',
+  },
+];
+

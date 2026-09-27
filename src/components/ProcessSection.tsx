@@ -56,7 +56,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onOpenQuoteModal
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-            {PROCESS_STEPS.map((step, idx) => (
+            {PROCESS_STEPS.map((step) => (
               <div
                 key={step.number}
                 className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"

@@ -101,9 +101,9 @@ export const ProjectsSection: React.FC = () => {
                     onError={(e) => {
                       const img = e.target as HTMLImageElement;
                       if (project.id === 'salle-de-bain-residentiel') {
-                        img.src = '/assets/projects/entrepot-apres.jpeg';
+                        img.src = '/assets/projects/salledebain-apres.jpeg';
                       } else if (project.id === 'facade-exterieur') {
-                        img.src = '/assets/projects/haussmann-apres.jpeg';
+                        img.src = '/assets/projects/facade-apres.jpeg';
                       }
                     }}
                     className="absolute inset-0 w-full h-full object-cover object-center"
@@ -126,9 +126,9 @@ export const ProjectsSection: React.FC = () => {
                       onError={(e) => {
                         const img = e.target as HTMLImageElement;
                         if (project.id === 'salle-de-bain-residentiel') {
-                          img.src = '/assets/projects/entrepot-avant.jpeg';
+                          img.src = '/assets/projects/salledebain-avant.jpeg';
                         } else if (project.id === 'facade-exterieur') {
-                          img.src = '/assets/projects/haussmann-avant.jpeg';
+                          img.src = '/assets/projects/facade-avant.jpeg';
                         }
                       }}
                       className="absolute inset-0 w-full h-full object-cover object-center filter contrast-110"

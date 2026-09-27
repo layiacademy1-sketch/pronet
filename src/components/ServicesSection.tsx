@@ -27,10 +27,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
       return (
         srv.category === 'bureaux' ||
         srv.category === 'immeubles' ||
-        srv.category === 'parties-communes' ||
         srv.category === 'locaux-commerces'
       );
-    if (filter === 'technique') return srv.category === 'vitres' || srv.category === 'sols';
+    if (filter === 'technique')
+      return srv.category === 'vitres' || srv.category === 'sols' || srv.category === 'parquet';
     return true;
   });
 
@@ -115,6 +115,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                       img.src = '/assets/services/fin-de-chantier.jpeg';
                     } else if (service.id === 'vitres') {
                       img.src = '/assets/services/nettoyage-verriere.jpeg';
+                    } else if (service.id === 'parquet') {
+                      img.src = '/assets/services/entretien-parquet.jpeg';
                     }
                   }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"

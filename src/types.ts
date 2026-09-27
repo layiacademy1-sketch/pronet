@@ -6,6 +6,7 @@ export type ServiceCategory =
   | 'vitres'
   | 'chantier'
   | 'sols'
+  | 'parquet'
   | 'locaux-commerces';
 
 export interface ServiceItem {

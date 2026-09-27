@@ -12,8 +12,13 @@ import { PROCESS_CAROUSEL_PHOTOS } from '../data/cleaningData';
 export const InterventionsCarousel: React.FC = () => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
-  // Double the list for seamless continuous infinite looping
-  const carouselPhotos = [...PROCESS_CAROUSEL_PHOTOS, ...PROCESS_CAROUSEL_PHOTOS];
+  // Repeat list for seamless continuous infinite looping across all screen sizes
+  const carouselPhotos = [
+    ...PROCESS_CAROUSEL_PHOTOS,
+    ...PROCESS_CAROUSEL_PHOTOS,
+    ...PROCESS_CAROUSEL_PHOTOS,
+    ...PROCESS_CAROUSEL_PHOTOS,
+  ];
 
   const handlePrevPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();

@@ -82,6 +82,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                   img.src = '/assets/services/fin-de-chantier.jpeg';
                 } else if (service.id === 'vitres') {
                   img.src = '/assets/services/nettoyage-verriere.jpeg';
+                } else if (service.id === 'parquet') {
+                  img.src = '/assets/services/entretien-parquet.jpeg';
                 }
               }}
               className="w-full h-full object-cover filter brightness-[0.7]"

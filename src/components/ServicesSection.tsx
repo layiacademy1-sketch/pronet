@@ -108,6 +108,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 <img
                   src={service.image}
                   alt={`Prestation de ${service.title} par PRONET`}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    if (service.id === 'chantier') {
+                      img.src = '/assets/services/fin-de-chantier.jpeg';
+                    } else if (service.id === 'vitres') {
+                      img.src = '/assets/services/nettoyage-verriere.jpeg';
+                    }
+                  }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />

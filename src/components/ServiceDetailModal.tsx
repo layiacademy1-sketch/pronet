@@ -75,6 +75,15 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             <img
               src={service.image}
               alt={service.title}
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const img = e.target as HTMLImageElement;
+                if (service.id === 'chantier') {
+                  img.src = '/assets/services/fin-de-chantier.jpeg';
+                } else if (service.id === 'vitres') {
+                  img.src = '/assets/services/nettoyage-verriere.jpeg';
+                }
+              }}
               className="w-full h-full object-cover filter brightness-[0.7]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />

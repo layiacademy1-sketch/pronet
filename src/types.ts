@@ -24,12 +24,12 @@ export interface ServiceItem {
   startingPrice?: string;
 }
 
-export type ProjectCategory = 'tous' | 'bureaux' | 'immeubles' | 'commerces' | 'chantier' | 'industriel' | 'residentiel';
+export type ProjectCategory = 'tous' | 'bureaux' | 'immeubles' | 'commerces' | 'chantier' | 'industriel' | 'residentiel' | 'exterieur';
 
 export interface BeforeAfterProject {
   id: string;
   title: string;
-  category: 'bureaux' | 'immeubles' | 'commerces' | 'chantier' | 'industriel' | 'residentiel';
+  category: 'bureaux' | 'immeubles' | 'commerces' | 'chantier' | 'industriel' | 'residentiel' | 'exterieur';
   categoryLabel: string;
   beforeImage: string;
   afterImage: string;

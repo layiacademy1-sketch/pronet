@@ -99,7 +99,12 @@ export const ProjectsSection: React.FC = () => {
                     alt={`Résultat Après : ${project.title}`}
                     referrerPolicy="no-referrer"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/assets/projects/entrepot-apres.jpeg';
+                      const img = e.target as HTMLImageElement;
+                      if (project.id === 'salle-de-bain-residentiel') {
+                        img.src = '/assets/projects/entrepot-apres.jpeg';
+                      } else if (project.id === 'facade-exterieur') {
+                        img.src = '/assets/projects/haussmann-apres.jpeg';
+                      }
                     }}
                     className="absolute inset-0 w-full h-full object-cover object-center"
                   />
@@ -119,7 +124,12 @@ export const ProjectsSection: React.FC = () => {
                       alt={`État Avant : ${project.title}`}
                       referrerPolicy="no-referrer"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/assets/projects/entrepot-avant.jpeg';
+                        const img = e.target as HTMLImageElement;
+                        if (project.id === 'salle-de-bain-residentiel') {
+                          img.src = '/assets/projects/entrepot-avant.jpeg';
+                        } else if (project.id === 'facade-exterieur') {
+                          img.src = '/assets/projects/haussmann-avant.jpeg';
+                        }
                       }}
                       className="absolute inset-0 w-full h-full object-cover object-center filter contrast-110"
                     />

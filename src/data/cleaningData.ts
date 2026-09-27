@@ -200,15 +200,15 @@ export const SERVICES_LIST: ServiceItem[] = [
   {
     id: 'vitres',
     slug: 'nettoyage-vitres',
-    title: 'Nettoyage de vitres & façades vitrées',
+    title: 'Nettoyage verrière',
     category: 'vitres',
     highlightBadge: 'Travaux en hauteur & Nacelle',
     shortDesc:
       'Lavage de vitres intérieures/extérieures, verrières, façades de sièges sociaux et vitrines de boutiques à toute hauteur.',
     longDesc:
-      'Une clarté parfaite sans aucune trace. Nos cordistes et laveurs de vitres certifiés interviennent en plain-pied, à la perche à eau osmosée jusqu’à 20 mètres ou en nacelle élévatrice pour les grandes tours de bureaux.',
+      'Une clarté parfaite sans aucune trace. Nos cordistes et laveurs de vitres certifiés interviennent en plain-pied, à la perche à eau osmosée jusqu’à 20 mètres ou en nacelle élévatrice pour les grandes verrières et tours de bureaux.',
     image:
-      'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80',
+      'https://image.noelshack.com/fichiers/2026/39/7/1790529779-whatsapp-image-2026-09-27-at-19-22-41.jpeg',
     features: [
       'Lavage traditionnel à la raclette professionnelle et mouilleur',
       'Système d’eau pure osmosée pour châssis et bardages alu',
@@ -233,7 +233,7 @@ export const SERVICES_LIST: ServiceItem[] = [
   {
     id: 'chantier',
     slug: 'fin-de-chantier',
-    title: 'Nettoyage après travaux / fin de chantier',
+    title: 'Nettoyage de fin de chantier',
     category: 'chantier',
     highlightBadge: 'Réactivité 24/48h',
     shortDesc:
@@ -241,7 +241,7 @@ export const SERVICES_LIST: ServiceItem[] = [
     longDesc:
       'Avant la remise des clés aux acquéreurs ou locataires, la propreté est décisive. PRONET élimine tous les résidus de chantier (plâtre, peinture, voile de ciment, poussières d’enduit) pour livrer un bâtiment étincelant prêt à l’usage.',
     image:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+      'https://image.noelshack.com/fichiers/2026/39/7/1790529401-whatsapp-image-2026-09-27-at-19-16-08.jpeg',
     features: [
       'Aspiration industrielle minutieuse des micro-poussières',
       'Décapage et élimination des voiles de ciment et résidus de joint',
@@ -355,20 +355,26 @@ export const BEFORE_AFTER_PROJECTS: BeforeAfterProject[] = [
     ],
   },
   {
-    id: 'bureaux-parquet',
-    title: 'Rénovation & métallisation des sols d’un siège social haussmannien',
-    category: 'bureaux',
-    categoryLabel: 'Bureaux & Sièges',
+    id: 'facade-exterieur',
+    title: 'Nettoyage et remise en état de façade',
+    category: 'exterieur',
+    categoryLabel: 'Nettoyage Extérieur',
     beforeImage:
-      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+      'https://image.noelshack.com/fichiers/2026/39/7/1790528822-whatsapp-image-2026-09-25-at-22-37-07.jpeg',
     afterImage:
-      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
-    location: 'Boulevard Haussmann - Paris 8e',
-    surface: '1 200 m²',
-    duration: '1 week-end sans interruption d’activité',
+      'https://image.noelshack.com/fichiers/2026/39/7/1790528822-whatsapp-image-2026-09-25-at-22-37-07-1.jpeg',
+    location: 'Façade extérieure - Île-de-France',
+    surface: 'Surfaces extérieures',
+    duration: 'Intervention soignée',
     description:
-      'Nettoyage en profondeur des boiseries, dépoussiérage des moulures, rénovation lustrante du parquet d’époque et désinfection intégrale des 60 postes informatiques.',
-    tags: ['Siège social', 'Monobrosse', 'Écolabel'],
+      'Nettoyage approfondi de la façade avec élimination des salissures, traces, dépôts et résidus accumulés sur les surfaces extérieures. Traitement adapté aux différents matériaux afin de raviver l’aspect de la façade et retrouver une surface propre et soignée.',
+    tags: [
+      'Nettoyage des surfaces',
+      'Élimination des traces',
+      'Décrassage',
+      'Traitement adapté au support',
+      'Finitions',
+    ],
   },
 ];
 

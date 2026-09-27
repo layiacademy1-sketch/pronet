@@ -30,6 +30,18 @@ export const ProjectsSection: React.FC = () => {
     setSliderPositions((prev) => ({ ...prev, [id]: val }));
   };
 
+  // Distinct categories based on remaining projects
+  const availableCategories: { key: ProjectCategory; label: string }[] = [
+    { key: 'tous', label: 'Toutes nos réalisations' },
+    ...Array.from(new Set(BEFORE_AFTER_PROJECTS.map((p) => p.category))).map((cat) => {
+      const proj = BEFORE_AFTER_PROJECTS.find((p) => p.category === cat);
+      return {
+        key: cat as ProjectCategory,
+        label: proj?.categoryLabel || cat,
+      };
+    }),
+  ];
+
   return (
     <section id="realisations" className="py-20 lg:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,68 +60,25 @@ export const ProjectsSection: React.FC = () => {
           </p>
 
           {/* Filter Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
-            <button
-              onClick={() => setActiveCategory('tous')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === 'tous'
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Toutes nos réalisations
-            </button>
-            <button
-              onClick={() => setActiveCategory('industriel')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === 'industriel'
-                  ? 'bg-sky-600 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Nettoyage industriel
-            </button>
-            <button
-              onClick={() => setActiveCategory('bureaux')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === 'bureaux'
-                  ? 'bg-sky-600 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Bureaux & Sièges
-            </button>
-            <button
-              onClick={() => setActiveCategory('immeubles')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === 'immeubles'
-                  ? 'bg-sky-600 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Immeubles & Copropriétés
-            </button>
-            <button
-              onClick={() => setActiveCategory('chantier')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === 'chantier'
-                  ? 'bg-sky-600 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Fin de chantier
-            </button>
-            <button
-              onClick={() => setActiveCategory('commerces')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === 'commerces'
-                  ? 'bg-sky-600 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              Commerces & ERP
-            </button>
-          </div>
+          {availableCategories.length > 2 && (
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+              {availableCategories.map((cat) => (
+                <button
+                  key={cat.key}
+                  onClick={() => setActiveCategory(cat.key)}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    activeCategory === cat.key
+                      ? cat.key === 'tous'
+                        ? 'bg-slate-900 text-white shadow-md'
+                        : 'bg-sky-600 text-white shadow-md'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Projects Grid with Interactive Comparison Sliders */}
@@ -128,6 +97,10 @@ export const ProjectsSection: React.FC = () => {
                   <img
                     src={project.afterImage}
                     alt={`Résultat Après : ${project.title}`}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/assets/projects/entrepot-apres.jpeg';
+                    }}
                     className="absolute inset-0 w-full h-full object-cover object-center"
                   />
                   <div className="absolute top-4 right-4 z-10">
@@ -144,6 +117,10 @@ export const ProjectsSection: React.FC = () => {
                     <img
                       src={project.beforeImage}
                       alt={`État Avant : ${project.title}`}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/projects/entrepot-avant.jpeg';
+                      }}
                       className="absolute inset-0 w-full h-full object-cover object-center filter contrast-110"
                     />
                     <div className="absolute top-4 left-4 z-10">
@@ -206,7 +183,7 @@ export const ProjectsSection: React.FC = () => {
                   </div>
 
                   {/* Specs & Tags */}
-                  <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div className="pt-4 border-t border-slate-100 space-y-2.5 text-xs">
                     <div className="flex items-center gap-4 text-slate-600">
                       <div className="flex items-center gap-1">
                         <Layers className="w-4 h-4 text-sky-500" />
@@ -218,11 +195,12 @@ export const ProjectsSection: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                      <span className="text-[11px] font-bold text-slate-600 mr-1">Prestations :</span>
                       {project.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-semibold rounded-md"
+                          className="px-2 py-0.5 bg-sky-50 text-sky-800 text-[11px] font-medium rounded-md border border-sky-100/80"
                         >
                           {tag}
                         </span>

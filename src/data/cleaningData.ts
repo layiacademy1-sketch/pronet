@@ -333,20 +333,26 @@ export const SERVICES_LIST: ServiceItem[] = [
 
 export const BEFORE_AFTER_PROJECTS: BeforeAfterProject[] = [
   {
-    id: 'sol-industriel',
-    title: 'Dégraissage et remise en état d’un entrepôt logistique de 4 500 m²',
-    category: 'industriel',
-    categoryLabel: 'Nettoyage industriel',
+    id: 'salle-de-bain-residentiel',
+    title: 'Nettoyage et remise en état complète d’une salle de bain',
+    category: 'residentiel',
+    categoryLabel: 'Nettoyage Résidentiel',
     beforeImage:
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80', // Entrepôt encombré/poussiéreux
+      'https://image.noelshack.com/fichiers/2026/39/7/1790524810-whatsapp-image-2026-09-25-at-22-37-08-3.jpeg',
     afterImage:
-      'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80', // Entrepôt étincelant avec sol poli
-    location: 'Plateforme logistique - Roissy CDG (95)',
-    surface: '4 500 m²',
-    duration: '48 heures non-stop en week-end',
+      'https://image.noelshack.com/fichiers/2026/39/7/1790524819-whatsapp-image-2026-09-25-at-22-37-08-4.jpeg',
+    location: 'Résidence & Appartement - Île-de-France',
+    surface: 'Salle de bain complète',
+    duration: 'Remise en état soignée',
     description:
-      'Décapage complet des traces de pneus de chariots élévateurs, aspiration des poussières fines en charpente et application d’un traitement anti-poussière au sol.',
-    tags: ['Autolaveuse autoportée', 'Dégraissant écologique', 'Haute pression'],
+      'Nettoyage approfondi de la salle de bain avec dépoussiérage, lavage et désinfection des sols, sanitaires, douche et surfaces. Élimination des traces et salissures afin de retrouver un espace propre, sain et prêt à l’utilisation.',
+    tags: [
+      'Nettoyage des sols',
+      'Désinfection sanitaires',
+      'Nettoyage douche',
+      'Lavage des surfaces',
+      'Finitions',
+    ],
   },
   {
     id: 'bureaux-parquet',
@@ -364,55 +370,8 @@ export const BEFORE_AFTER_PROJECTS: BeforeAfterProject[] = [
       'Nettoyage en profondeur des boiseries, dépoussiérage des moulures, rénovation lustrante du parquet d’époque et désinfection intégrale des 60 postes informatiques.',
     tags: ['Siège social', 'Monobrosse', 'Écolabel'],
   },
-  {
-    id: 'marbre-immeuble',
-    title: 'Cristallisation et lustrage du marbre d’un hall de résidence',
-    category: 'immeubles',
-    categoryLabel: 'Immeubles & Résidences',
-    beforeImage:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-    afterImage:
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-    location: 'Neuilly-sur-Seine (92)',
-    surface: '320 m² de marbre de Carrare',
-    duration: '2 journées d’intervention',
-    description:
-      'Élimination des micro-rayures, ponçage au disque diamanté et cristallisation brillante sans produit toxique, redonnant au hall son éclat d’origine.',
-    tags: ['Cristallisation', 'Marbre noble', 'Syndic de copropriété'],
-  },
-  {
-    id: 'chantier-hotel',
-    title: 'Nettoyage fin de chantier d’un hôtel boutique 4 étoiles avant ouverture',
-    category: 'chantier',
-    categoryLabel: 'Fin de chantier',
-    beforeImage:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
-    afterImage:
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
-    location: 'Quartier Opéra - Paris 9e',
-    surface: '42 chambres + restaurant & spa',
-    duration: '5 jours d’intervention intensive',
-    description:
-      'Dépoussiérage complet après travaux de plâtre et peinture, décapage des résidus de ciment sur faïences, lustrage de toute la vitrerie et désinfection totale.',
-    tags: ['Hôtellerie de luxe', 'Normes OPR', 'Aspirateurs HEPA'],
-  },
-  {
-    id: 'vitrine-commerce',
-    title: 'Lavage de façade vitrée et verrière monumentale d’un centre d’affaires',
-    category: 'commerces',
-    categoryLabel: 'Commerces & ERP',
-    beforeImage:
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    afterImage:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-    location: 'La Défense (92)',
-    surface: '1 800 m² de vitrage extérieur',
-    duration: '3 jours en perche eau pure & nacelle',
-    description:
-      'Élimination des dépôts de pollution urbaine et film calcaire à l’eau déminéralisée osmosée sans produit chimique, garantissant une brillance durable.',
-    tags: ['Eau osmosée', 'Nacelle R486', 'Zéro chimie'],
-  },
 ];
+
 
 export const TESTIMONIALS: Testimonial[] = [
   {

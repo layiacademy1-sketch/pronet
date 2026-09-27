@@ -103,7 +103,7 @@ export default function App() {
         {/* 5. Section Présentation: "Des experts du nettoyage à votre service" with editable stats cards */}
         <AboutSection onOpenQuoteModal={() => handleOpenQuoteModal()} />
 
-        {/* Carrousel : Nos équipes et interventions en images au-dessus de Services */}
+        {/* Carrousel : Interventions en images au-dessus de Services */}
         <InterventionsCarousel />
 
         {/* 6. Section Services with 8 comprehensive cards, photos, badges and detail views */}

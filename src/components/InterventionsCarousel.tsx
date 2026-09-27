@@ -45,7 +45,7 @@ export const InterventionsCarousel: React.FC = () => {
                 <span>En direct du terrain</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                Nos équipes et interventions en images
+                Interventions en images
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
                 Survolez les photos pour figer le défilement • Cliquez sur une image pour l'agrandir
